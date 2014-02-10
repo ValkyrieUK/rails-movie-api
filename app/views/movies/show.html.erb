@@ -15,5 +15,9 @@
   <%= @movie.year %>
 </p>
 
+<p>
+  <%= image_tag @movie.art %>
+</p>
+
 <%= link_to 'Edit', edit_movie_path(@movie) %> |
 <%= link_to 'Back', movies_path %>

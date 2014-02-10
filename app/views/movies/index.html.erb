@@ -1,6 +1,14 @@
 <h1>Listing movies</h1>
+<%= form_tag movies_path, method: 'get' do %>
+<p>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag 'Search', name: nil %>
+</p>
+  <% end %>
 
-<table>
+  <% if @search.blank? %>
+
+<table border="1">
   <thead>
     <tr>
       <th>Title</th>
@@ -9,20 +17,52 @@
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
 
-  <tbody>
-    <% @movies.each do |movie| %>
+    <tbody>
+      <% @movies.each do |movie| %>
+        <tr>
+          <td><%= movie.title %></td>
+          <td><%= movie.desc %></td>
+          <td><%= movie.year %></td>
+          <td><%= image_tag movie.art, size: "150x200" %><td>
+          <td><%= link_to 'Show', movie %></td>
+          <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
+          <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+     </tbody>
+  </table>
+
+  <% else %>
+  <table border="1">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Desc</th>
+      <th>Year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+   <tbody>
+    <% @search.each do |movie| %>
       <tr>
         <td><%= movie.title %></td>
         <td><%= movie.desc %></td>
         <td><%= movie.year %></td>
+        <td><%= image_tag movie.art, size: "150x200" %><td>
         <td><%= link_to 'Show', movie %></td>
         <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
         <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+  <% end %>
   </tbody>
 </table>
 
