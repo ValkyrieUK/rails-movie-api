@@ -7,15 +7,14 @@ module Api
     # GET /movies
     # GET /movies.json
     def index
-      @movies = Movie.all
-      respond_with @movies
+      respond_with Movie.all
     end
 
     # GET /movies/1
     # GET /movies/1.json
     def show
-      movie = Movie.search(params[:id])
-      respond_with movies: movie
+      respond_with Movie.search(params[:id])
+      # respond_with movie: movie
     end
 
     # DELETE /movies/1

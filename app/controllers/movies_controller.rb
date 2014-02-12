@@ -32,7 +32,7 @@ class MoviesController < ApplicationController
         format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
         format.json { render action: 'show', status: :created, location: @movie }
       else
-        format.html { render action: 'new' }
+        formatheroku console.html { render action: 'new' }
         format.json { render json: @movie.errors, status: :unprocessable_entity }
       end
     end
